@@ -13,15 +13,26 @@ jobs:
       ECR_REGISTRY: 260332828352.dkr.ecr.us-east-1.amazonaws.com/myrepo
       IMAGE_TAG: latest
 
+    # steps:
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '7.0.x'
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
 
-      - name: Dotnet Build
-        run: |
-          cd SampleWebApiAspNetCore
-          dotnet build -c Release
-        working-directory: ./SampleWebApiAspNetCore
+
+      
+      # - name: Checkout repository
+      #   uses: actions/checkout@v2
+
+      # - name: Dotnet Build
+      #   run: |
+      #     cd SampleWebApiAspNetCore
+      #     dotnet build -c Release
+      #   working-directory: ./SampleWebApiAspNetCore
 
       - name: Archive build artifacts
         uses: actions/upload-artifact@v2
