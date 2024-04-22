@@ -47,10 +47,10 @@ jobs:
           registry: ${{ env.ECR_REGISTRY }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          registry-type: 'private'  # Assuming it's AWS ECR
-          region: 'us-east-1'   # Replace with your AWS region
+          region: us-east-1   # Replace with your AWS region
           mask-password: true
           skip-logout: false
+          registry-type: private  # Assuming it's AWS ECR
 
       - name: Download build artifacts
         uses: actions/download-artifact@v2
